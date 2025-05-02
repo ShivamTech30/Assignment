@@ -1,4 +1,3 @@
-// GetinTouch.tsx
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -10,7 +9,7 @@ interface FormValues {
   message: string;
 }
 
-const GetinTouch: React.FC = () => {
+const GetinTouch: React.FC = React.memo(() => {
   const initialValues: FormValues = {
     fullName: '',
     email: '',
@@ -36,32 +35,37 @@ const GetinTouch: React.FC = () => {
     // Add your form submission logic here (e.g., API call)
   };
 
+  const contactDetails = [
+    {
+      label: 'Address:',
+      value: '110, 16th Road, Chembur, Mumbai - 400071',
+    },
+    {
+      label: 'Phone:',
+      value: '+91 22 25280822',
+    },
+    {
+      label: 'Email:',
+      value: 'info@supremegroup.co.in',
+    },
+  ];
+
   return (
-    <div className="min-h-[1020px] bg-[#0A6ABF] text-white p-20 md:px-[200px] grid md:grid-cols-2 gap-8">
+    <div className="lg:min-h-[800px] md:min-h-[800px]  min-h-[1020px] bg-[#0A6ABF] text-white px-8 lg:p-20 md:px-[50px] lg:px-[250px] grid md:grid-cols-2 gap-8">
       {/* Left Section (Contact Information) */}
       <div className="flex flex-col justify-center space-y-6">
-        <h2 className="text-5xl font-[500] font-sans leading-tight">Get in touch</h2>
+        <h2 className="text-5xl font-medium leading-tight">Get in touch</h2>
         <div className="w-14 border-b-[4px] border-white my-5"></div>
-        <p className="text-lg font-sans">For general enquiries</p>
+        <p className="text-lg">For general enquiries</p>
 
         <div className="mt-6 space-y-10">
-          <p className="leading-relaxed">
-            <span className="font-sans font-[400] text-[24px]">Address:</span>
-            <br />
-            <span className="font-sans text-[18px] font-[300]">
-              110, 16th Road, Chembur, Mumbai - 400071
-            </span>
-          </p>
-          <p className="leading-relaxed">
-            <span className="font-sans font-[400] text-[24px]">Phone:</span>
-            <br />
-            <span className="font-sans text-[18px] font-[300]">+91 22 25280822</span>
-          </p>
-          <p className="leading-relaxed">
-            <span className="font-sans font-[400] text-[24px]">Email:</span>
-            <br />
-            <span className="font-sans text-[18px] font-[300]">info@supremegroup.co.in</span>
-          </p>
+          {contactDetails.map((detail, index) => (
+            <p key={index} className="leading-relaxed">
+              <span className="font-medium text-[24px]">{detail.label}</span>
+              <br />
+              <span className="text-[18px] font-light">{detail.value}</span>
+            </p>
+          ))}
         </div>
       </div>
 
@@ -74,67 +78,28 @@ const GetinTouch: React.FC = () => {
         >
           {({ isSubmitting }) => (
             <Form className="space-y-6">
-              <div>
-                <Field
-                  type="text"
-                  name="fullName"
-                  placeholder="Full name"
-                  className="w-full py-1 bg-transparent border-b border-white text-white placeholder-white outline-none font-sans text-lg"
-                />
-                <ErrorMessage
-                  name="fullName"
-                  component="div"
-                  className="text-red-500 text-sm font-sans mt-1"
-                />
-              </div>
-
-              <div>
-                <Field
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  className="w-full py-1 bg-transparent border-b border-white text-white placeholder-white outline-none font-sans text-lg"
-                />
-                <ErrorMessage
-                  name="email"
-                  component="div"
-                  className="text-red-500 text-sm font-sans mt-1"
-                />
-              </div>
-
-              <div>
-                <Field
-                  type="text"
-                  name="company"
-                  placeholder="Company"
-                  className="w-full py-1 bg-transparent border-b border-white text-white placeholder-white outline-none font-sans text-lg"
-                />
-                <ErrorMessage
-                  name="company"
-                  component="div"
-                  className="text-red-500 text-sm font-sans mt-1"
-                />
-              </div>
-
-              <div>
-                <Field
-                  as="textarea"
-                  name="message"
-                  placeholder="Message"
-                  className="w-full py-1 bg-transparent border-b border-white text-white placeholder-white outline-none font-sans text-lg"
-                  rows={4}
-                />
-                <ErrorMessage
-                  name="message"
-                  component="div"
-                  className="text-red-500 text-sm font-sans mt-1"
-                />
-              </div>
+              {['fullName', 'email', 'company', 'message'].map((field, index) => (
+                <div key={index}>
+                  <Field
+                    type={field === 'message' ? 'textarea' : 'text'}
+                    name={field}
+                    placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                    className="w-full py-1 bg-transparent border-b border-white text-white placeholder-white outline-none text-lg"
+                    as={field === 'message' ? 'textarea' : 'input'}
+                    rows={field === 'message' ? 4 : undefined}
+                  />
+                  <ErrorMessage
+                    name={field}
+                    component="div"
+                    className="text-red-500 text-sm mt-1"
+                  />
+                </div>
+              ))}
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-6 py-2 border border-white text-white rounded-full font-sans text-lg hover:bg-white hover:text-[black] transition"
+                className="px-6 py-2 border border-white text-white lg:w-[30%] md:w-[30%] w-[100%] rounded-full text-lg hover:bg-white hover:text-black transition"
               >
                 Send
               </button>
@@ -144,6 +109,6 @@ const GetinTouch: React.FC = () => {
       </div>
     </div>
   );
-};
+});
 
 export default GetinTouch;

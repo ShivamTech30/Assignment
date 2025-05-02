@@ -1,87 +1,22 @@
-import React from "react";
-import Animation from "./Components/Vehicles";
-import GetinTouch from "./Components/GetinTouch";
-import Footer from "./Components/Footer";
-import ScreenPage from "./Components/ScreenPage";
-import Header from "./Components/Header";
+import React, { Suspense, lazy } from "react";
 
-
-
+// Lazy load components for better performance
+const Header = lazy(() => import("./Components/Header"));
+const ScreenPage = lazy(() => import("./Components/ScreenPage"));
+const Animation = lazy(() => import("./Components/Vehicles"));
+const GetinTouch = lazy(() => import("./Components/GetinTouch"));
+const Footer = lazy(() => import("./Components/Footer"));
 
 const App: React.FC = () => {
-
-
-
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <Header />
       <ScreenPage />
       <Animation />
       <GetinTouch />
       <Footer />
-    </>
-
-
+    </Suspense>
   );
 };
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { Suspense, lazy } from 'react';
-// import { Routes, Route } from 'react-router-dom';
-// import { AnimatePresence } from 'framer-motion';
-// import Navbar from './components/Navbar';
-// import Footer from './components/Footer';
-// import Loader from './components/Loader';
-
-// // Lazy load pages for better performance
-// const Home = lazy(() => import('./pages/Home'));
-// const About = lazy(() => import('./pages/About'));
-// const Projects = lazy(() => import('./pages/Projects'));
-// const Contact = lazy(() => import('./pages/Contact'));
-
-// function App() {
-//   return (
-//     <div className="min-h-screen flex flex-col">
-//       <Navbar />
-//       <main className="flex-grow">
-//         <AnimatePresence mode="wait">
-//           <Suspense fallback={<Loader />}>
-//             <Routes>
-//               <Route path="/" element={<Home />} />
-//               <Route path="/about" element={<About />} />
-//               <Route path="/projects" element={<Projects />} />
-//               <Route path="/contact" element={<Contact />} />
-//             </Routes>
-//           </Suspense>
-//         </AnimatePresence>
-//       </main>
-//       <Footer />
-//     </div>
-//   );
-// }
-
-// export default App;

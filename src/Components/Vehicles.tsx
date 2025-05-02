@@ -212,7 +212,7 @@ const ImageSlider: React.FC = () => {
   };
 
   return (
-    <div className="pt-4 sm:pt-8 md:pt-12 lg:pt-16 pb-4 sm:pb-8 md:pb-12 lg:pb-16 bg-black">
+    <div className="pt-[88px]   md:pt-12 lg:pt-16 pb-4 sm:pb-8 md:pb-12 lg:pb-16 bg-black">
       {/* Main section containing the slider */}
       <section ref={sectionRef} className="bg-black pt-4 sm:pt-8 md:pt-12 lg:pt-16 pb-4 sm:pb-8 md:pb-12 lg:pb-16 text-white lg:h-screen lg:overflow-hidden">
         <div className="container mx-auto px-2 sm:px-4 md:px-6 lg:px-12 flex flex-col h-full justify-between gap-2 sm:gap-4 md:gap-6 lg:gap-10">
@@ -350,7 +350,7 @@ interface MobileImageProps {
 const MobileImage: React.FC<MobileImageProps> = ({ title, image }) => (
   <div className="text-white flex flex-col justify-between text-center">
     <img src={image} alt={title} className="object-cover mb-4 sm:mb-6 md:mb-8 mt-4 sm:mt-6 md:mt-8 w-full max-h-[150px] sm:max-h-[200px] md:max-h-[250px] lg:max-h-[360px]" />
-    <span className="text-white text-[12px] sm:text-[14px] md:text-base lg:text-white">{title}</span>
+    <span className="text-white text-[12px] sm:text-[14px] md:text-base lg:text-white pb-[20px]">{title}</span>
   </div>
 );
 
@@ -358,7 +358,10 @@ const MobileImage: React.FC<MobileImageProps> = ({ title, image }) => (
 interface MobileImageSectionProps {
   title: string;
   images: ImageData[];
+   
 }
+
+
 
 // Component for mobile and tablet image sections using Swiper
 const MobileImageSection: React.FC<MobileImageSectionProps> = ({ title, images }) => (
@@ -374,7 +377,7 @@ const MobileImageSection: React.FC<MobileImageSectionProps> = ({ title, images }
       pagination={{ clickable: true }}
       speed={600}
       spaceBetween={10}
-      slidesPerView={1}
+      slidesPerView={1.2}
       className="cursor-grab my-2 sm:my-4 md:my-4"
     >
       {images.map((image) => (

@@ -5,10 +5,10 @@ import Logo from "../assets/logo.png";
 const Footer: React.FC = () => {
     return (
         
-        <footer className="  from-white to-blue-100 text-black px-20 pt-[30px] md:px-[200px]  main-footer  h-[650px]  ">
+        <footer className="  from-white to-blue-100 text-black lg:px-20 md:px-12 px-8 pt-[30px] md:px-[100px]  main-footer  h-[570px]  ">
             <div>
-                <div className="mb-[70px]">
-                    <img src={Logo} alt="Supreme Group" className="w-[226px] h-[63px] mb-4" />
+                <div className="lg:mb-[70px] md:mb-[60px] mb-[40px]">
+                    <img src={Logo} alt="Supreme Group" className="lg:w-[226px] md:w-[156px] w-[126px] h-[43px] md:h-[53px] lg:h-[63px] mb-4" />
                 </div>
                 <div className="  mx-auto grid grid-cols-1 md:grid-cols-4 grid-cols-2  gap-8">
                     {/* Logo Section */}
@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
                 </div>
 
                 {/* Footer Bottom */}
-                <div className="lg:mt-[100px]  sm:mt-[40px]     text-[16px] text-[black] grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 sm:text-center   md:text-left lg:text-left  ">
+                <div className="lg:mt-[100px]  sm:mt-[40px]     text-[16px] text-[black] grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 text-center   md:text-left lg:text-left   ">
                     <p className=" ">©2024. All Rights Reserved.</p>
                     <p className=" hidden lg:block md:block">Supreme House, 110, 16th Road, Chembur, Mumbai - 400071.</p>
                 </div>
@@ -66,3 +66,5 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
+
+ 
